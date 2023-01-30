@@ -9,12 +9,13 @@
           name="길드 무릉 리스트"
           icon="ti-view-list-alt"
         />
-        <sidebar-link to="/typography" name="노블 인원 관리" icon="ti-text" />
-        <sidebar-link to="/icons" name="20세기 인원 관리" icon="ti-pencil-alt2" />
-        <sidebar-link to="/maps" name="도탁스 인원 관리" icon="ti-map" />
-        <sidebar-link to="/notifications" name="인원 관리 필요 명단" icon="ti-bell" />
-        <sidebar-link to="/notifications" name="우수노블 정정 필요 명단" icon="ti-bell" />
-        <sidebar-link to="/notifications" name="로그 조회" icon="ti-bell" />
+        <br>
+        <sidebar-link to="/typography" name="노블 인원 관리" icon="ti-pencil-alt" style="margin-top: 3vw;"/>
+        <sidebar-link to="/icons" name="20세기 인원 관리" icon="ti-pencil-alt" />
+        <sidebar-link to="/maps" name="도탁스 인원 관리" icon="ti-pencil-alt" />
+        <sidebar-link to="/notifications" name="인원 관리 필요 명단" icon="ti-check" />
+        <sidebar-link to="/notifications" name="우수노블 정정 필요 명단" icon="ti-check" />
+        <sidebar-link to="/notifications" name="로그 조회" icon="ti-list" />
       </template>
       <mobile-menu>
         <li class="nav-item">

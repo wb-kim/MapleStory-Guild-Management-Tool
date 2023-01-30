@@ -18,10 +18,10 @@ div {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 2rem;
   margin: 2rem auto;
-  min-width: 60rem;
-  max-width: 80rem;
   background-color: white;
   overflow-x: auto;
+  text-align: center;
+  table-layout: auto;
 }
 
 :deep(th) {

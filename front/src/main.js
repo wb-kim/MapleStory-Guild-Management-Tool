@@ -16,13 +16,14 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router/index";
-import tableSlot from "./components/TableSlot"
+import axios from "axios";
 
 import PaperDashboard from "./plugins/paperDashboard";
 import "vue-notifyjs/themes/default.css";
 
 Vue.use(PaperDashboard);
-
+Vue.prototype.$axios = axios;
+axios.defaults.baseURL = "http://localhost:8845/";
 /* eslint-disable no-new */
 new Vue({
   router,
