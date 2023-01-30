@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noble.noble.mapper.CenturyMapper">
+    <insert id="insertCentury" parameterType="Century">
+        INSERT INTO century (nickname, main_char, level, job, upper_noble, grantor)
+        VALUES (#{nickname}, #{mainChar}, #{level}, #{job}, #{upperNoble}, #{grantor})
+    </insert>
+
+    <select id="getCenturyListFromMain" parameterType="int" resultType="String">
+        SELECT nickname FROM century WHERE main_char = #{mainChar} AND upper_noble = 0;
+    </select>
+    
+    <select id="getCenturyUpperListFromMain" parameterType="int" resultType="String">
+        SELECT nickname FROM century WHERE main_char = #{mainChar} AND upper_noble = 1;
+    </select>
+
+    <select id="getCenturyList" parameterType="map" resultType="Century">
+        SELECT * FROM century
+            <if test="searchStr != ''"> WHERE nickname LIKE '%${searchStr}%'</if>
+        ORDER BY ${order}
+    </select>
+
+    <select id="getMainCharFromCentury" parameterType="String" resultType="int">
+        SELECT main_char FROM century WHERE nickname LIKE '%${searchStr}%' AND main_char != 0
+    </select>
+
+    <select id="getCentury" parameterType="int" resultType="Century">
+        SELECT * FROM century WHERE idx = #{idx};
+    </select>
+
+    <update id="updateCentury" parameterType="Century">
+        UPDATE century
+            <set>
+                <if test="nickname != null or nickname != ''">nickname = #{nickname},</if>
+                <if test="mainChar != null or mainChar != 0">main_char = #{mainChar},</if>
+                <if test="level != null or level != -1">level = #{level},</if>
+                <if test="job != null or job != ''">job = #{job},</if>
+                <if test="upperNoble != null or upperNoble != -1">upper_noble = #{upperNoble},</if>
+                <if test="grantor != null or grantor != ''">grantor = #{grantor},</if>
+            </set>
+        WHERE idx = #{idx}
+    </update>
+
+    <delete id="deleteCentury" parameterType="int">
+        DELETE FROM century WHERE idx = #{idx}
+    </delete>
+
+    <delete id="deleteCenturyFromMain" parameterType="int">
+        DELETE FROM century WHERE main_char = #{mainChar}
+    </delete>
+
+    <select id="getCenturyNickname" resultType="String">
+        SELECT nickname FROM century
+    </select>
+
+    <select id="getCenturyCount" resultType="int">
+        SELECT COUNT(*) FROM century
+    </select>
+</mapper>

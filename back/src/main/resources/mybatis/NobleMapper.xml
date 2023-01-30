@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noble.noble.mapper.NobleMapper">
+    <insert id="insertNoble" parameterType="Noble">
+        INSERT INTO noble (nickname, main_char, level, job, dojang, dojang_agree, grantor)
+        VALUES (#{nickname}, #{mainChar}, #{level}, #{job}, #{dojang}, #{dojangAgree}, #{grantor})
+    </insert>
+
+    <select id="getNobleListForTotal" parameterType="map" resultType="Noble">
+        SELECT * FROM noble WHERE main_char = ''
+            <if test="searchStr != ''"> AND nickname LIKE '%${searchStr}%'</if>
+        ORDER BY ${order}
+    </select>
+
+    <select id="getNobleSubList" parameterType="int" resultType="String">
+        SELECT nickname FROM noble WHERE main_char = #{mainChar}
+    </select>
+
+    <select id="getMainCharFromNoble" parameterType="String" resultType="int">
+        SELECT main_char FROM noble WHERE nickname LIKE '%${searchStr}%' AND main_char != 0
+    </select>
+
+    <select id="getNobleList" parameterType="map" resultType="Noble">
+        SELECT * FROM noble
+            <if test="type == 1 and searchStr != ''"> WHERE nickname LIKE '%${searchStr}%'</if>
+            <if test="type == 2 and searchStr != ''"> WHERE level >= ${searchStr}</if>
+            <if test="type == 3 and searchStr != ''"> WHERE job LIKE '%${searchStr}%'</if>
+            <if test="type == 4 and searchStr != ''"> WHERE dojang >= ${searchStr}</if>
+        ORDER BY ${order}
+    </select>
+
+    <select id="getNoble" parameterType="int" resultType="Noble">
+        SELECT * FROM noble WHERE idx = #{idx};
+    </select>
+
+    <update id="updateNoble" parameterType="Noble">
+        UPDATE noble
+            <set>
+                <if test="nickname != ''">nickname = #{nickname},</if>
+                <if test="mainChar != ''">main_char = #{mainChar},</if>
+                <if test="level != -1">level = #{level},</if>
+                <if test="job != ''">job = #{job},</if>
+                <if test="dojang != -1">dojang = #{dojang},</if>
+                <if test="dojangAgree != -1">dojang_agree = #{dojangAgree},</if>
+                <if test="dotax != 0">dotax = #{dotax},</if>
+                <if test="grantor != ''">grantor = #{grantor},</if>
+            </set>
+        WHERE idx = #{idx}
+    </update>
+
+    <update id="useExempt" parameterType="map">
+        UPDATE noble SET exempted_date = #{exemptedDate} where idx = #{idx}
+    </update>
+
+    <update id="warning" parameterType="int">
+        UPDATE noble SET warn = 1 where idx = #{idx}
+    </update>
+    
+    <delete id="deleteNoble" parameterType="int">
+        DELETE FROM noble WHERE idx = #{idx}
+    </delete>
+
+    <delete id="deleteNobleFromMain" parameterType="int">
+        DELETE FROM noble WHERE main_char = #{mainChar}
+    </delete>
+
+    <select id="getNobleForDojang" resultType="Noble">
+        SELECT * FROM noble
+    </select>
+
+    <select id="getNobleNickname" resultType="String">
+        SELECT nickname FROM noble WHERE dotax = 0
+    </select>
+
+    <select id="getAdmin" resultType="String">
+        SELECT nickname FROM noble WHERE admin > 0
+    </select>
+
+    <select id="getNobleCount" resultType="int">
+        SELECT COUNT(*) FROM noble WHERE dotax = 0
+    </select>
+
+    <select id="getIdx" parameterType="String" resultType="int">
+        SELECT idx FROM noble WHERE nickname = #{nickname}
+    </select>
+
+    <select id="checkDuplicate" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM noble WHERE nickname = #{nickname}
+    </select>
+
+    
+</mapper>
