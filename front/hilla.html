@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>진 힐라 타이머</title>
+    </head>
+    <body>
+        <div>
+            <br><img style="height: 200px;" src="http://35.239.228.185/image/timer.png"/>
+            <p id="time">다음 수확 시간  </p>
+            <p id="diffTime">차이 시간  </p>
+            <div style="margin-bottom: 10px">
+                <button onClick="btnNormal()">노말</button>  
+                <button onClick="btnHard()">하드</button>                        
+            </div>
+            <div id="normal" style="display: none">
+                <button onClick="btnNPhase1()">100~60%(2페 40퍼)</button>
+                <button onClick="btnNPhase2()">60~30%(3페 20퍼)</button>
+                <button onClick="btnNPhase3()">30~0%(사망)</button>
+            </div>
+            <div id="hard" style="display: none">
+                <button onClick="btnHPhase1()">100~60%(2페 40퍼)</button>
+                <button onClick="btnHPhase2()">60~30%(3페 20퍼)</button>
+                <button onClick="btnHPhase3()">30~0%(사망)</button>
+            </div>
+            <div style="margin-top: 10px">
+                <button onClick="btnReset()">초기화</button>  
+                <button onClick="btnPrev()">되돌리기</button>
+            </div>
+            <br><br>
+            <div>
+                <p>사용법</p>
+                <p>1. 난이도 선택</p>
+                <p>2. 위에 업로드된 사진에 맞게 남은 피 선택</p>
+                <p>3. 시간이 자동으로 계산되서 출력됨</p>
+                <p>4. 초기화 : 초기 상태로 되돌림</p>
+                <p>5. 되돌리기 : 이전 상태로 되돌림(각 조작 후 1회밖에 사용불가)</p>
+                <p>오류 문의 : 리부트2 너구리쟝</p>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    var total = 0;
+    var minute = 0;
+    var second = 0;
+    var diffTime = 0;
+    var prevTimeString = "";
+    var prevDiffTimeString = "";
+    var prevTotal = "";
+    
+    function btnNormal() {
+        prevTotal = total;
+        prevTimeString = document.getElementById("time").textContent;
+        prevDiffTimeString = document.getElementById("diffTime").textContent;
+        total = 1604;
+        document.getElementById("time").innerHTML = "다음 수확 시간  26:44";
+        document.getElementById("diffTime").innerHTML = "차이 시간  3:16";
+        document.getElementById("normal").style.display = "inline";
+        document.getElementById("hard").style.display = "none";
+    }
+    
+    function btnHard() {
+        prevTotal = total;
+        prevTimeString = document.getElementById("time").textContent;
+        prevDiffTimeString = document.getElementById("diffTime").textContent;
+        total = 1634;
+        document.getElementById("time").innerHTML = "다음 수확 시간  27:14";
+        document.getElementById("diffTime").innerHTML = "차이 시간  2:46";
+        document.getElementById("hard").style.display = "inline";
+        document.getElementById("normal").style.display = "none";
+     }
+    
+    function btnHPhase1() {
+        prevTotal = total;
+        prevTimeString = document.getElementById("time").textContent;
+        prevDiffTimeString = document.getElementById("diffTime").textContent;
+        total = total - 152;
+        if (total < 0) {
+            total = 0;
+        }
+        var mm = (Math.floor)(total / 60);
+        minute = String(mm);
+        second = String(total % 60);
+        document.getElementById("time").innerHTML = "다음 수확 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        document.getElementById("diffTime").innerHTML = "차이 시간  2:32";
+    }
+    
+    function btnHPhase2() {
+        prevTotal = total;
+        prevTimeString = document.getElementById("time").textContent;
+        prevDiffTimeString = document.getElementById("diffTime").textContent;
+        total = total - 126;
+        if (total < 0) {
+            total = 0;
+        }
+        var mm = (Math.floor)(total / 60);
+        minute = String(mm);
+        second = String(total % 60);
+        document.getElementById("time").innerHTML = "다음 수확 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        document.getElementById("diffTime").innerHTML = "차이 시간  2:06";
+    }
+    
+    function btnHPhase3() {
+        prevTotal = total;
+        prevTimeString = document.getElementById("time").textContent;
+        prevDiffTimeString = document.getElementById("diffTime").textContent;
+        total = total - 100;
+        if (total < 0) {
+            total = 0;
+        }
+        var mm = (Math.floor)(total / 60);
+        minute = String(mm);
+        second = String(total % 60);
+        document.getElementById("time").innerHTML = "다음 수확 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        document.getElementById("diffTime").innerHTML = "차이 시간  1:40";
+    }   
+
+    function btnNPhase1() {
+        prevTotal = total;
+        prevTimeString = document.getElementById("time").textContent;
+        prevDiffTimeString = document.getElementById("diffTime").textContent;
+        total = total - 180;
+        if (total < 0) {
+            total = 0;
+        }
+        var mm = (Math.floor)(total / 60);
+        minute = String(mm);
+        second = String(total % 60);
+        document.getElementById("time").innerHTML = "다음 수확 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        document.getElementById("diffTime").innerHTML = "차이 시간  3:00";
+    }
+    
+    function btnNPhase2() {
+        prevTotal = total;
+        prevTimeString = document.getElementById("time").textContent;
+        prevDiffTimeString = document.getElementById("diffTime").textContent;
+        total = total - 150;
+        if (total < 0) {
+            total = 0;
+        }
+        var mm = (Math.floor)(total / 60);
+        minute = String(mm);
+        second = String(total % 60);
+        document.getElementById("time").innerHTML = "다음 수확 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        document.getElementById("diffTime").innerHTML = "차이 시간  2:30";
+    }
+    
+    function btnNPhase3() {
+        prevTotal = total;
+        prevTimeString = document.getElementById("time").textContent;
+        prevDiffTimeString = document.getElementById("diffTime").textContent;
+        total = total - 120;
+        if (total < 0) {
+            total = 0;
+        }
+        var mm = (Math.floor)(total / 60);
+        minute = String(mm);
+        second = String(total % 60);
+        document.getElementById("time").innerHTML = "다음 수확 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        document.getElementById("diffTime").innerHTML = "차이 시간  2:00";
+    }
+    
+    function btnReset() {
+        total = 0;
+        
+        document.getElementById("time").innerHTML = "다음 수확 시간";
+        document.getElementById("diffTime").innerHTML = "차이 시간";
+        document.getElementById("normal").style.display = "none";
+        document.getElementById("hard").style.display = "none";
+
+        prevTotal = 0;
+        prevTimeString = "";
+        prevDiffTimeString = "";
+    }
+
+    function btnPrev() {
+        total = prevTotal;
+        document.getElementById("time").innerHTML = prevTimeString;
+        document.getElementById("diffTime").innerHTML = prevDiffTimeString;
+    }
+    
+</script>

@@ -1,0 +1,222 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>칼로스 타이머</title>
+    </head>
+    <body>
+        <div>
+            <p>2페 기준 작성<br><br></p>
+            <p id="curTime">보스 시간  30:00</p><br>
+            <p id="nextGTime">간섭</p>
+            <p id="nextGLTime">간섭(왼비)</p>
+            <p id="nextGBTime">간섭(화살)</p>
+            <p id="nextGDTime">간섭(드론)</p>
+            <p id="nextBTime">폭탄</p>
+            <p id="nextWBTime">날개 폭탄(트리거)</p>
+            <p id="nextDieTime">즉사기</p>
+            <p id="nextLaserTime">브레스</p>
+            <br>
+            <div>
+                <button onClick="btnG()">간섭</button>
+                <button onClick="btnGL()">간섭(왼비)</button>
+                <button onClick="btnGB()">간섭(화살)</button>
+                <button onClick="btnGD()">간섭(드론)</button>
+                <br><br>
+                <button onClick="btnBoom()">폭탄</button>
+                <button onClick="btnWBoom()">날개 폭탄(트리거)</button>
+                <button onClick="btnDie()">즉사기</button>
+                <br><br>
+                <button onClick="btnLaser()">브레스(2-1)</button>
+                <button onClick="btnLaser2()">브레스(2-2)</button>
+                <button onClick="btnLaser3()">브레스(2-3,4)</button>
+            </div>
+            <br><br>
+            <div>
+                <p>패턴(간섭, 즉사기) 시간</p>
+                <button onClick="btnPP50sec()">+50초(그로기)</button>
+                <button onClick="btnPP13sec()">+13초(썬바)</button>
+                <button onClick="btnPP10sec()">+10초(일반바인드)</button>
+                <br><br>
+                <p>현재 시간 증감</p>
+                <button onClick="btnStart()">시작</button>
+                <button onClick="btnP10sec()">+10초</button>
+                <button onClick="btnP1sec()">+1초</button>
+                <button onClick="btnM1sec()">-1초</button>
+                <button onClick="btnM10sec()">-10초</button>
+                <button onClick="btnReset()">종료/초기화</button>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    var total = 1800;
+    var minute;
+    var second;
+
+    var gTime;
+    var dieTime;
+
+    function btnStart() {
+        tid = setInterval('timer()', 1000);
+    };
+
+    function timer() {
+        if (total < 0) {
+            clearInterval(tid);
+            total = 0;
+        }
+        var mm = (Math.floor)(total / 60);
+        minute = String(mm);
+        second = String(total % 60);
+        document.getElementById("curTime").innerHTML = "현재 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        total--;
+    }
+
+    function btnBoom() {
+        var pTime = total - 10;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextBTime").innerHTML = "다음 폭탄 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+
+    function btnWBoom() {
+        var pTime = total - 15;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextWBTime").innerHTML = "다음 날개 폭탄(트리거) 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+    
+    function btnG() {
+        var pTime = total - 60;
+        gTime = pTime;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextGTime").innerHTML = "다음 간섭 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+    
+    function btnGL() {
+        var pTime = total - 25;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextGLTime").innerHTML = "다음 간섭(왼비) 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+
+    function btnGB() {
+        var pTime = total - 15;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextGBTime").innerHTML = "다음 간섭(화살) 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+    
+    function btnGD() {
+        var pTime = total - 15;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextGDTime").innerHTML = "다음 간섭(드론) 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+
+    function btnDie() {
+        var pTime = total - 150;
+        dieTime = pTime;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextDieTime").innerHTML = "다음 즉사기 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+
+    function btnLaser() {
+        var pTime = total - 60;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextLaserTime").innerHTML = "다음 브레스 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+
+    function btnLaser2() {
+        var pTime = total - 45;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextLaserTime").innerHTML = "다음 브레스 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+
+    function btnLaser3() {
+        var pTime = total - 30;
+        var mm = (Math.floor)(pTime / 60);
+        minute = String(mm);
+        second = String(pTime % 60);
+        document.getElementById("nextLaserTime").innerHTML = "다음 브레스 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+    
+    function btnPP50sec() {
+        dieTime += 50;
+        var mm = (Math.floor)(dieTime / 60);
+        minute = String(mm);
+        second = String(dieTime % 60);
+        document.getElementById("nextDieTime").innerHTML = "다음 즉사기 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        
+        gTime += 50;
+        var smm = (Math.floor)(gTime / 60);
+        sminute = String(smm);
+        ssecond = String(gTime % 60);
+        document.getElementById("nextGTime").innerHTML = "다음 간섭 시간  " + sminute.padStart(2, '0') + ":" + ssecond.padStart(2, '0');
+    }
+
+    function btnPP13sec() {
+        dieTime += 13;
+        var mm = (Math.floor)(dieTime / 60);
+        minute = String(mm);
+        second = String(dieTime % 60);
+        document.getElementById("nextDieTime").innerHTML = "다음 즉사기 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+
+    function btnPP10sec() {
+        dieTime += 10;
+        var mm = (Math.floor)(dieTime / 60);
+        minute = String(mm);
+        second = String(dieTime % 60);
+        document.getElementById("nextDieTime").innerHTML = "다음 즉사기 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+    }
+
+    function btnP10sec() {
+        total += 10;
+    }
+    
+    function btnP1sec() {
+        total += 1;
+    }
+    
+    function btnM1sec() {
+        total -= 1;
+    }
+    
+    function btnM10sec() {
+        total -= 10;
+    }
+    
+    function btnReset() {
+        total = 1800;
+
+        clearInterval(tid);
+
+        var mm = (Math.floor)(total / 60);
+        minute = String(mm);
+        second = String(total % 60);
+        document.getElementById("curTime").innerHTML = "보스 시간  " + minute.padStart(2, '0') + ":" + second.padStart(2, '0');
+        document.getElementById("nextBTime").innerHTML = "폭탄";
+        document.getElementById("nextWBTime").innerHTML = "날개 폭탄(트리거)";
+        document.getElementById("nextGTime").innerHTML = "간섭";
+        document.getElementById("nextGLTime").innerHTML = "간섭(레이저)";
+        document.getElementById("nextGBTime").innerHTML = "간섭(화살)";
+        document.getElementById("nextGDTime").innerHTML = "간섭(드론)";
+        document.getElementById("nextDieTime").innerHTML = "즉사기";
+        document.getElementById("nextLaserTime").innerHTML = "브레스";
+    }
+    
+</script>                                        
