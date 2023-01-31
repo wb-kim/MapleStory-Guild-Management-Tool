@@ -120,7 +120,7 @@
 
     function logout() {
         $.ajax({
-            url: 'http://175.197.29.139/api/Main/logout', 
+            url: 'https://reboot2noble.kro.kr/api/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -132,7 +132,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'http://175.197.29.139/api/Main/session', 
+            url: 'https://reboot2noble.kro.kr/api/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -214,7 +214,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'http://175.197.29.139/api/Admin/getLogList',
+            url: 'https://reboot2noble.kro.kr/api/Admin/getLogList',
             data: param,
             type: 'POST',
             contentType: 'application/json',
