@@ -182,7 +182,7 @@
         $('#header').load('common/header.html');
         $('#aside').load('common/aside.html');
         $('#footer').load('common/footer.html');
-        sessionCheck();
+        setTimeout(() => sessionCheck(), 2000);
     });
 
     function logout() {
