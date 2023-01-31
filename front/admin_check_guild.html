@@ -177,7 +177,7 @@
 
     function logout() {
         $.ajax({
-            url: 'http://175.197.29.139:8845/Main/logout', 
+            url: 'http://175.197.29.139/api/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -189,7 +189,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'http://175.197.29.139:8845/Main/session', 
+            url: 'http://175.197.29.139/api/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -217,7 +217,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/manageList',
+            url: 'http://175.197.29.139/api/Admin/manageList',
             data: param,
             type: 'POST',
             contentType: 'application/json',

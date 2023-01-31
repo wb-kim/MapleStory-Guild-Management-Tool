@@ -214,7 +214,7 @@
         param.nickname = $('#mainChar').val();
         param = JSON.stringify(param);
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/checkMainChar', 
+            url: 'http://175.197.29.139/api/Admin/checkMainChar', 
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -243,7 +243,7 @@
     }
     function getAdminList() {
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/getAdmin', 
+            url: 'http://175.197.29.139/api/Admin/getAdmin', 
             type: 'POST',
             success: function(data){
                 var str = '';
@@ -257,7 +257,7 @@
 
     function logout() {
         $.ajax({
-            url: 'http://175.197.29.139:8845/Main/logout', 
+            url: 'http://175.197.29.139/api/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -269,7 +269,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'http://175.197.29.139:8845/Main/session', 
+            url: 'http://175.197.29.139/api/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -296,7 +296,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/getNoble',
+            url: 'http://175.197.29.139/api/Admin/getNoble',
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -330,7 +330,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/insertNoble',
+            url: 'http://175.197.29.139/api/Admin/insertNoble',
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -367,7 +367,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/updateNoble',
+            url: 'http://175.197.29.139/api/Admin/updateNoble',
             data: param,
             type: 'POST',
             contentType: 'application/json',

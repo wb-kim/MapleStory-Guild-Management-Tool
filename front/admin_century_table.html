@@ -227,7 +227,7 @@
 
     function getAdminList() {
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/getAdmin', 
+            url: 'http://175.197.29.139/api/Admin/getAdmin', 
             type: 'POST',
             success: function(data){
                 var str = '';
@@ -268,7 +268,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/deleteCentury',
+            url: 'http://175.197.29.139/api/Admin/deleteCentury',
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -288,7 +288,7 @@
 
     function logout() {
         $.ajax({
-            url: 'http://175.197.29.139:8845/Main/logout', 
+            url: 'http://175.197.29.139/api/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -300,7 +300,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'http://175.197.29.139:8845/Main/session', 
+            url: 'http://175.197.29.139/api/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -384,7 +384,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'http://175.197.29.139:8845/Admin/getCenturyList',
+            url: 'http://175.197.29.139/api/Admin/getCenturyList',
             data: param,
             type: 'POST',
             contentType: 'application/json',
