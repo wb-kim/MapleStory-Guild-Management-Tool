@@ -34,13 +34,12 @@ docker-compose run --rm --entrypoint "\
   openssl req -x509 -nodes -newkey rsa:$rsa_key_size -days 1\
     -keyout '$path/privkey.pem' \
     -out '$path/fullchain.pem' \
-    -subj '/CN=0.0.0.0'" certbot
+    -subj '/CN=localhost'" certbot
 echo
 
 
 echo "### Starting nginx ..."
 docker-compose up --force-recreate -d nginx
-mkdir -p "/usr/share/nginx/.well-known/acme-challenge/"
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
