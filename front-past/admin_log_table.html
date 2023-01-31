@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>리부트2 노블 길드 사이트</title>
+    <link href="dist/css/style.min.css" rel="stylesheet">
+</head>
+
+<style>
+    body {
+        font-family: '나눔 고딕';
+    }
+    .off-screen {
+	    display: none;
+    }
+    #nav {
+        width: 100%;
+        text-align: center;
+    }
+    #nav a {
+        display: inline-block;
+        padding: 3px 5px;
+        margin-right: 10px;
+        background: #ccc;
+        color: #000;
+        text-decoration: none;
+    }
+    #nav a.active {
+        background: #333;
+        color: #fff;
+    }
+</style>
+
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full"
+        data-boxed-layout="full">
+        <div id="header"></div>
+        <div id="aside"></div>
+        <div class="page-wrapper">
+            <div class="page-breadcrumb">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" style="margin-bottom: 1vw; font-weight: bold;">로그 조회</h4>
+                            <table style="margin-bottom: 1vw; float: left;">
+                                <tbody>
+                                <tr>
+                                    <td style="width: 300px;">
+                                        <input id="ipt_search_str" class="form-control" placeholder="찾을 닉네임을 입력하세요."/>
+                                    </td>
+                                    <td style="width: 10px;"></td>
+                                    <td>
+                                        <a class="btn btn-primary" style="width: 100px;" onclick="createTable()"><i class="me-2 mdi mdi-search-web"></i>검색</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div style="float: right; margin-right: 1vw" id="total"></div>
+                            <div class="table-responsive" style="display: inline-block;">
+                                <table id="products" class="table table-bordered" style="display: none;">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col">발생일</th>
+                                            <th scope="col">닉네임</th>
+                                            <th scope="col" colspan="2">무엇</th>
+                                            <th scope="col">이유</th>
+                                            <th scope="col">담당자</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="total_table">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer"></div>
+        </div>
+    </div>
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="dist/js/waves.js"></script>
+    <script src="dist/js/sidebarmenu.js"></script>
+    <script src="dist/js/custom.min.js"></script>
+</body>
+</html>
+
+<script>
+    function isEmpty(value) {
+        if (value == "" || value == null || value == undefined || (value != null && typeof value == "object" && !Object.keys(value).length)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $(document).ready(function() {
+        $('#header').load('common/header.html');
+        $('#aside').load('common/aside.html');
+        $('#footer').load('common/footer.html');
+        sessionCheck();
+        createTable();
+        pagination();
+        $('#ipt_search_str').keypress(function (event) {
+            if(event.keyCode == '13'){
+                searchData();
+            }
+        })
+    });
+
+    function logout() {
+        $.ajax({
+            url: 'https://reboot2noble.kro.kr/api/Main/logout', 
+            type: 'POST',
+            success: function(data){
+                if (data == "SUCCESS") {
+                    location.href = "login.html";
+                }
+            }
+        }); 
+    }
+
+    function sessionCheck() {
+        $.ajax({
+            url: 'https://reboot2noble.kro.kr/api/Main/session', 
+            type: 'POST',
+            success: function(data){
+                console.log(data);
+                if (data == "") {
+                    $('#navbarDropdown').html('로그인');
+                    alert('로그인이 되지 않았습니다.\n로그인 페이지로 이동합니다.');
+                    location.href = "login.html";
+                } else if (data == "ADMIN") {
+                    $('#products').attr('style', 'text-align: center; table-layout: fixed; font-size: small;');
+                    $('#asideAdmin').attr('style', '');
+                    $('#navbarDropdown').html('로그아웃');
+                } else {
+                    $('#products').attr('style', 'text-align: center; table-layout: fixed; font-size: small;');
+                    $('#navbarDropdown').html('로그아웃');
+                }
+            }
+        });
+    }
+
+    function searchData() {
+        createTable();
+    }
+
+    function pagination() {
+        var rowPerPage = 20;
+
+        $('#nav').remove();
+        var $products = $('#products');
+
+        $products.after('<div id="nav">');
+
+
+        var $tr = $($products).find('tbody tr');
+        var rowTotals = $tr.length;
+
+        var pageTotal = Math.ceil(rowTotals/ rowPerPage);
+        var i = 0;
+
+        for (; i < pageTotal; i++) {
+            $('<a href="#"></a>')
+                    .attr('rel', i)
+                    .html(i + 1)
+                    .appendTo('#nav');
+        }
+
+        $tr.addClass('off-screen')
+                .slice(0, rowPerPage)
+                .removeClass('off-screen');
+
+        var $pagingLink = $('#nav a');
+        $pagingLink.on('click', function (evt) {
+            evt.preventDefault();
+            var $this = $(this);
+            if ($this.hasClass('active')) {
+                return;
+            }
+            $pagingLink.removeClass('active');
+            $this.addClass('active');
+
+            var currPage = $this.attr('rel');
+            var startItem = currPage * rowPerPage;
+            var endItem = startItem + rowPerPage;
+
+            $tr.css('opacity', '0.0')
+                    .addClass('off-screen')
+                    .slice(startItem, endItem)
+                    .removeClass('off-screen')
+                    .animate({opacity: 1}, 300);
+
+        });
+
+        $pagingLink.filter(':first').addClass('active');
+
+    }
+
+    function createTable() {
+        var param = {};
+        param.searchStr = $('#ipt_search_str').val();
+        param = JSON.stringify(param);
+
+        $.ajax({
+            url: 'https://reboot2noble.kro.kr/api/Admin/getLogList',
+            data: param,
+            type: 'POST',
+            contentType: 'application/json',
+            success: function(data){
+                var str = '';
+                
+                $.each(data, function(i) {
+                    var exemptedDate = data[i].exemptedDate;
+
+                    str += '<tr>';
+                    str += '<th scope="row">' + (isEmpty(data[i].createDt) ? '' : data[i].createDt) + '</th>';
+                    str += '<td>' + (isEmpty(data[i].nickname) ? '' : data[i].nickname)+ '</td>';
+                    str += '<td colspan="2">' + (isEmpty(data[i].what) ? '' : data[i].what)+ '</td>';
+                    str += '<td>' + (isEmpty(data[i].reason) ? '' : data[i].reason)+ '</td>';
+                    str += '<td>' + (isEmpty(data[i].who) ? '' : data[i].who) + '</td>';
+                    str += '</tr>'
+                });
+
+                if (str == '') {
+                    str = '<td scope="col" colspan="6">조회할 수 있는 데이터가 없습니다.</td>'
+                    $('#total_table').html(str);
+                    $('#nav').remove();
+                } else {
+                    $('#total_table').html(str);
+                    pagination();
+                }
+            },
+        })
+    }
+</script>
+
