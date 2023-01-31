@@ -1,6 +1,6 @@
 .DS_Store
-front/node_modules/
-front/dist/
+front_develop/node_modules/
+front_develop/dist/
 
 # local env files
 .env.local
