@@ -1,7 +1,6 @@
 .DS_Store
 front_develop/node_modules/
 front_develop/dist/
-!back/build/libs/*.jar
 
 # local env files
 .env.local
