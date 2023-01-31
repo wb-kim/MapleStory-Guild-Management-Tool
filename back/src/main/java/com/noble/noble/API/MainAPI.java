@@ -27,7 +27,6 @@ public class MainAPI {
     private final String NOBLE_USER_KEY = "noble127";
     private final String NOBLE_ADMIN_KEY = "nobleherohibi";    
 
-    @Autowired private CommonService commonService;
     @Autowired private NobleService nobleService;
     @Autowired private CenturyService centuryService;
     @Autowired private DotaxService dotaxService;

@@ -153,7 +153,7 @@
 
     function logout() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/logout', 
+            url: 'http://localhost:8845/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -165,7 +165,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/session', 
+            url: 'http://localhost:8845/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -305,7 +305,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/getDojangList',
+            url: 'http://localhost:8845/Main/getDojangList',
             data: param,
             type: 'POST',
             contentType: 'application/json',

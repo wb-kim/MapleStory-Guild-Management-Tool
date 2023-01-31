@@ -289,7 +289,7 @@
 
         $('.modal-delete').on('click', function() {
             $.ajax({
-                url: 'https://reboot2noble.kro.kr/api/Admin/useExempt', 
+                url: 'http://localhost:8845/Admin/useExempt', 
                 data: param,
                 type: 'POST',
                 contentType: 'application/json',
@@ -329,7 +329,7 @@
             
             console.log(param);
             $.ajax({
-                url: 'https://reboot2noble.kro.kr/api/Admin/warning', 
+                url: 'http://localhost:8845/Admin/warning', 
                 data: param,
                 type: 'POST',
                 contentType: 'application/json',
@@ -351,7 +351,7 @@
 
     function getAdminList() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/getAdmin', 
+            url: 'http://localhost:8845/Admin/getAdmin', 
             type: 'POST',
             success: function(data){
                 var str = '';
@@ -396,7 +396,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/deleteNoble',
+            url: 'http://localhost:8845/Admin/deleteNoble',
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -420,7 +420,7 @@
 
     function logout() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/logout', 
+            url: 'http://localhost:8845/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -432,7 +432,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/session', 
+            url: 'http://localhost:8845/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -512,7 +512,7 @@
 
     function updateDojang() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/updateAllDojang', 
+            url: 'http://localhost:8845/Admin/updateAllDojang', 
             type: 'POST',
             success: function(data){
                 
@@ -533,7 +533,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/getNobleList',
+            url: 'http://localhost:8845/Admin/getNobleList',
             data: param,
             type: 'POST',
             contentType: 'application/json',

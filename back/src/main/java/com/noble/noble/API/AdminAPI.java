@@ -30,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 public class AdminAPI {
-    @Autowired private CommonService commonService;
     @Autowired private NobleService nobleService;
     @Autowired private CenturyService centuryService;
     @Autowired private DotaxService dotaxService;

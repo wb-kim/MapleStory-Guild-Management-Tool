@@ -208,7 +208,7 @@
         param.nickname = $('#mainChar').val();
         param = JSON.stringify(param);
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/checkMainChar', 
+            url: 'http://localhost:8845/Admin/checkMainChar', 
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -238,7 +238,7 @@
 
     function getAdminList() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/getAdmin', 
+            url: 'http://localhost:8845/Admin/getAdmin', 
             type: 'POST',
             success: function(data){
                 var str = '';
@@ -252,7 +252,7 @@
 
     function logout() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/logout', 
+            url: 'http://localhost:8845/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -264,7 +264,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/session', 
+            url: 'http://localhost:8845/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -291,7 +291,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/getDotax',
+            url: 'http://localhost:8845/Admin/getDotax',
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -325,7 +325,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/insertDotax',
+            url: 'http://localhost:8845/Admin/insertDotax',
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -361,7 +361,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/updateDotax',
+            url: 'http://localhost:8845/Admin/updateDotax',
             data: param,
             type: 'POST',
             contentType: 'application/json',

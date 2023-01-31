@@ -48,7 +48,7 @@
             param.code = $('#code').val();
             param = JSON.stringify(param);
             $.ajax({
-                url: 'https://reboot2noble.kro.kr/api/Main/login', 
+                url: 'http://localhost:8845/Main/login', 
                 type: 'POST',
                 contentType: 'application/json',
                 data: param,
