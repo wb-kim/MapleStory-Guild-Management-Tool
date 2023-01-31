@@ -40,6 +40,7 @@ echo
 
 echo "### Starting nginx ..."
 docker-compose up --force-recreate -d nginx
+mkdir -p "/usr/share/nginx/.well-known/acme-challenge/"
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
