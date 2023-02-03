@@ -23,7 +23,7 @@ import "vue-notifyjs/themes/default.css";
 
 Vue.use(PaperDashboard);
 Vue.prototype.$axios = axios;
-axios.defaults.baseURL = "https://reboot2noble.kro.kr/api/";
+axios.defaults.baseURL = "https://reboot2-noble.kro.kr/api/";
 /* eslint-disable no-new */
 new Vue({
   router,

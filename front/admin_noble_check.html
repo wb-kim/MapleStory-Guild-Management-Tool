@@ -102,7 +102,7 @@
 
     function logout() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/logout', 
+            url: 'https://reboot2-noble.kro.kr/api/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -114,7 +114,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/session', 
+            url: 'https://reboot2-noble.kro.kr/api/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -190,7 +190,7 @@
 
     function createTable() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/getNoNobleList',
+            url: 'https://reboot2-noble.kro.kr/api/Admin/getNoNobleList',
             type: 'POST',
             success: function(data){
                 var str = '';

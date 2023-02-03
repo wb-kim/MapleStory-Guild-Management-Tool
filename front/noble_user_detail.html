@@ -214,7 +214,7 @@
         param.nickname = $('#mainChar').val();
         param = JSON.stringify(param);
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/checkMainChar', 
+            url: 'https://reboot2-noble.kro.kr/api/Admin/checkMainChar', 
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -243,7 +243,7 @@
     }
     function getAdminList() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/getAdmin', 
+            url: 'https://reboot2-noble.kro.kr/api/Admin/getAdmin', 
             type: 'POST',
             success: function(data){
                 var str = '';
@@ -257,7 +257,7 @@
 
     function logout() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/logout', 
+            url: 'https://reboot2-noble.kro.kr/api/Main/logout', 
             type: 'POST',
             success: function(data){
                 if (data == "SUCCESS") {
@@ -269,7 +269,7 @@
 
     function sessionCheck() {
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Main/session', 
+            url: 'https://reboot2-noble.kro.kr/api/Main/session', 
             type: 'POST',
             success: function(data){
                 console.log(data);
@@ -296,7 +296,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/getNoble',
+            url: 'https://reboot2-noble.kro.kr/api/Admin/getNoble',
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -330,7 +330,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/insertNoble',
+            url: 'https://reboot2-noble.kro.kr/api/Admin/insertNoble',
             data: param,
             type: 'POST',
             contentType: 'application/json',
@@ -367,7 +367,7 @@
         param = JSON.stringify(param);
 
         $.ajax({
-            url: 'https://reboot2noble.kro.kr/api/Admin/updateNoble',
+            url: 'https://reboot2-noble.kro.kr/api/Admin/updateNoble',
             data: param,
             type: 'POST',
             contentType: 'application/json',
