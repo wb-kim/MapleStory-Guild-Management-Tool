@@ -7,11 +7,11 @@
     </insert>
 
     <select id="getCenturyListFromMain" parameterType="int" resultType="String">
-        SELECT nickname FROM century WHERE main_char = #{mainChar} AND upper_noble = 0;
+        SELECT nickname FROM century WHERE main_char = #{mainChar} AND upper_noble = 0 AND upperNoble < 2 ORDER BY upperNoble ASC;
     </select>
     
     <select id="getCenturyUpperListFromMain" parameterType="int" resultType="String">
-        SELECT nickname FROM century WHERE main_char = #{mainChar} AND upper_noble = 1;
+        SELECT nickname FROM century WHERE main_char = #{mainChar} AND upper_noble = 2;
     </select>
 
     <select id="getCenturyList" parameterType="map" resultType="Century">
@@ -21,7 +21,7 @@
     </select>
 
     <select id="getMainCharFromCentury" parameterType="String" resultType="int">
-        SELECT main_char FROM century WHERE nickname LIKE '%${searchStr}%' AND main_char != 0
+        SELECT main_char FROM century WHERE nickname LIKE '%${searchStr}%' AND main_char != 0;
     </select>
 
     <select id="getCentury" parameterType="int" resultType="Century">

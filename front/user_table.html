@@ -70,10 +70,11 @@
                                         <tr>
                                             <th scope="col">본캐</th>
                                             <th scope="col">부캐</th>
-                                            <th scope="col" colspan="3">20세기사람들</th>
-                                            <th scope="col" colspan="2">20세기(우수노블)</th>
+                                            <th scope="col">20세기(수플)</th>
+                                            <th scope="col">20세기(수로)</th>
+                                            <th scope="col" colspan="3">20세기(자유)</th>
                                             <th scope="col">도탁스</th>
-                                            <th scope="col" colspan="4">도탁스(우수노블)</th>
+                                            <th scope="col" colspan="4">도탁스(자유)</th>
                                             <th scope="col" id="order" value="admin DESC" onClick="changeOrder()" style="cursor:pointer;">
                                                 <i class="me-2 mdi mdi-sort"></i>면제권
                                             </th>
@@ -270,9 +271,9 @@
                     str += '<td>' + (isEmpty(data[i].sub[0]) ? '' : data[i].sub[0]) + '</td>';
                     str += '<td>' + (isEmpty(data[i].century[0]) ? '' : data[i].century[0])+ '</td>';
                     str += '<td>' + (isEmpty(data[i].century[1]) ? '' : data[i].century[1])+ '</td>';
-                    str += '<td>' + (isEmpty(data[i].century[2]) ? '' : data[i].century[2])+ '</td>';
-                    str += '<td>' + (isEmpty(data[i].centuryUpper[0]) ? '' : data[i].centuryUpper[0]) + '</td>';
+                    str += '<td>' + (isEmpty(data[i].centuryUpper[0]) ? '' : data[i].centuryUpper[0])+ '</td>';
                     str += '<td>' + (isEmpty(data[i].centuryUpper[1]) ? '' : data[i].centuryUpper[1]) + '</td>';
+                    str += '<td>' + (isEmpty(data[i].centuryUpper[2]) ? '' : data[i].centuryUpper[2]) + '</td>';
                     str += '<td>' + (isEmpty(data[i].dotax[0]) ? '' : data[i].dotax[0]) + '</td>';
                     str += '<td>' + (isEmpty(data[i].dotaxUpper[0]) ? '' : data[i].dotaxUpper[0]) + '</td>';
                     str += '<td>' + (isEmpty(data[i].dotaxUpper[1]) ? '' : data[i].dotaxUpper[1]) + '</td>';

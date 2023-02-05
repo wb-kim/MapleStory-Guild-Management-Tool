@@ -142,11 +142,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group" style="display: flex;">
-                                    <div class="col-md-5">
+                                    <div class="col-md-3">
                                         <span>우수 노블 여부</span>
                                     </div>
-                                    <div class="col-md-1">
-                                        <input type="checkbox" id="upperNoble">
+                                    <div class="col-md-3">
+                                        <select class="form-control select-custom" id="upperNoble">
+                                            <option value="0">수플필수</option>
+                                            <option value="1">수로필수</option>
+                                            <option value="2">수플면제</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-3">
                                         <span>승인자</span>
@@ -297,9 +301,7 @@
             success: function(data){
                 $('#nickname').val(data.nickname);
                 $('#mainChar').val(isEmpty(data.mainCharNick) ? '' : data.mainCharNick);
-                if (data.upperNoble == 1) {
-                    $('#upperNoble').attr("checked", true);    
-                }
+                $('#upperNoble').val(data.upperNoble).prop("selected", true);
                 $('#adminList').val(data.grantor).attr("selected", "selected");
             },
         })
@@ -314,7 +316,7 @@
         var param = {};
         param.nickname = $('#nickname').val();
         param.mainChar = checkMainIdx;
-        param.upperNoble = ($('#upperNoble').is(':checked') == true) ? 1 : 0;
+        param.upperNoble = parseInt($("#upperNoble").val());
         param.grantor = $('#adminList').val();
         param = JSON.stringify(param);
 
@@ -350,7 +352,7 @@
         param.idx = idx;
         param.nickname = $('#nickname').val();
         param.mainChar = checkMainIdx;
-        param.upperNoble = ($('#upperNoble').is(':checked') == true) ? 1 : 0;
+        param.upperNoble = parseInt($("#upperNoble").val());
         param.grantor = $('#adminList').val();
         param = JSON.stringify(param);
 

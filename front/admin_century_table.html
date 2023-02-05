@@ -147,7 +147,7 @@
                                             <th scope="col">본캐</th>
                                             <th scope="col">레벨</th>
                                             <th scope="col">직업</th>
-                                            <th scope="col">우수노블 여부</th>
+                                            <th scope="col">필수 컨텐츠</th>
                                             <th scope="col">승인</th>
                                             <th scope="col">관리</th>
                                         </tr>
@@ -401,7 +401,7 @@
                     str += '<td>' + (isEmpty(data[i].mainCharNick) ? '' : data[i].mainCharNick) + '</td>';
                     str += '<td>' + (isEmpty(data[i].level) ? '' : data[i].level)+ '</td>';
                     str += '<td>' + (isEmpty(data[i].job) ? '' : data[i].job)+ '</td>';
-                    str += '<td>' + ((data[i].upperNoble == 0) ? 'X' : 'O') + '</td>';
+                    str += '<td>' + ((data[i].upperNoble == 2) ? '없음' : (data[i].upperNoble == 1) ? '수로' : '수플') + '</td>';
                     str += '<td>' + (isEmpty(data[i].grantor) ? '' : data[i].grantor) + '</td>';
                     str += '<td><button class="warning" onClick="openModal(' + data[i].idx + ')">탈퇴</button></td>';
                     str += '</tr>'
