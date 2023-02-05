@@ -1,5 +1,6 @@
 package com.noble.noble.API;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.noble.noble.data.Noble;
 import com.noble.noble.service.CenturyService;
-import com.noble.noble.service.CommonService;
 import com.noble.noble.service.DotaxService;
 import com.noble.noble.service.NobleService;
+import com.noble.noble.service.OpenAPIService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,8 +31,13 @@ public class MainAPI {
     @Autowired private NobleService nobleService;
     @Autowired private CenturyService centuryService;
     @Autowired private DotaxService dotaxService;
-    
+    @Autowired private OpenAPIService openAPIService;
 
+    @PostMapping("/Main/cube")
+    public List<Map<String, Object>> getCubeCount(@RequestBody Map<String, Object> param) throws IOException{
+        return openAPIService.getCubeCount(param);
+    }
+    
     @PostMapping("/Main/login")
     public String login(@RequestBody Map<String, Object> param, HttpServletRequest request) {
         String response = "ERROR";
