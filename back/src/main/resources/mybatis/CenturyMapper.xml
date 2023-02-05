@@ -7,7 +7,7 @@
     </insert>
 
     <select id="getCenturyListFromMain" parameterType="int" resultType="String">
-        SELECT nickname FROM century WHERE main_char = #{mainChar} AND <![CDATA[upper_noble < 2]]> ORDER BY upperNoble ASC;
+        SELECT nickname FROM century WHERE main_char = #{mainChar} AND <![CDATA[upper_noble < 2]]> ORDER BY upper_noble ASC;
     </select>
     
     <select id="getCenturyUpperListFromMain" parameterType="int" resultType="String">
