@@ -285,6 +285,7 @@
                 type: 'POST',
                 contentType: 'application/json',
                 success: function(data){
+                    var str = ''
                     if (data == "401") {
                         alert('인증되지 않은 사용자입니다.\nAPI 키를 등록하고 사용해주세요.');
                         checkSearch = 0;
