@@ -33,6 +33,10 @@
         SELECT * FROM noble WHERE idx = #{idx};
     </select>
 
+    <update id="insertToken" parameterType="Map">
+        UPDATE noble SET token = #{token} WHERE nickname = #{nickname}
+    </update>
+
     <update id="updateNoble" parameterType="Noble">
         UPDATE noble
             <set>

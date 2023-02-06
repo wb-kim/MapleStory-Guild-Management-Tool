@@ -33,9 +33,22 @@ public class MainAPI {
     @Autowired private DotaxService dotaxService;
     @Autowired private OpenAPIService openAPIService;
 
+    @PostMapping("/Main/setToken")
+    public String insertToken(@RequestBody Map<String, Object> param) {
+        String response = "ERROR";
+        if (nobleService.insertToken(param))
+            response = "SUCCESS";
+        return response;
+    }
+
     @PostMapping("/Main/cube")
     public List<Map<String, Object>> getCubeCount(@RequestBody Map<String, Object> param) throws IOException{
-        return openAPIService.getCubeCount(param);
+        int idx = nobleService.getIdx((String)param.get("nickname"));
+        String token = nobleService.getNoble(idx).getToken();
+        Map<String, Object> searchParam = new HashMap<>();
+        searchParam.put("token", token);
+        searchParam.put("item", param.get("item"));
+        return openAPIService.getCubeCount(searchParam);
     }
     
     @PostMapping("/Main/login")

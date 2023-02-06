@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -74,10 +75,21 @@ public class OpenAPIService {
             }
 
             for (Map<String, Object> cubeHistory : cubeHistories) {
-                //System.out.println(cubeHistory.get("target_item"));
+                System.out.println(cubeHistory.get("target_item"));
                 if (cubeHistory.get("target_item").equals(itemName)) {
-                    if (cubeList.size() == 0) {
-                        System.out.println("null");
+                    Optional<Map<String, Object>> result = cubeList.stream().filter(x -> x.get("charName").equals(cubeHistory.get("character_name")))
+                                                                            .filter(x -> x.get("item").equals(cubeHistory.get("target_item"))).findFirst();
+                    System.out.println(result);
+                    if (result.isPresent()) {
+                        System.out.println("있음");    
+                        Map<String, Object> cube = (Map<String, Object>) result.get();
+                        if (cubeHistory.get("cube_type").equals(BLACK_CUBE)) {
+                            cube.put("blackCube", (int)cube.get("blackCube") + 1);
+                        } else if (cubeHistory.get("cube_type").equals(RED_CUBE)) {
+                            cube.put("redCube", (int)cube.get("redCube") + 1);
+                        }
+                    } else {
+                        System.out.println("없음");    
                         Map<String, Object> newCube = new HashMap<>();
                         newCube.put("charName", cubeHistory.get("character_name"));
                         newCube.put("item", cubeHistory.get("target_item"));
@@ -87,39 +99,12 @@ public class OpenAPIService {
                         } else if (cubeHistory.get("cube_type").equals(RED_CUBE)) {
                             newCube.put("blackCube", 0);
                             newCube.put("redCube", 1);
+                        } else {
+                            newCube.put("blackCube", 0);
+                            newCube.put("redCube", 0);  
                         }
                         cubeList.add(newCube);
-                    } else {
-                        for (int j = 0; j < cubeList.size(); j++) {
-                            Map<String, Object> cube = cubeList.get(j);
-                            if (cube.get("charName").equals(cubeHistory.get("character_name")) && cube.get("item").equals(cubeHistory.get("target_item"))) {
-                                System.out.println("있음");
-                                if (cubeHistory.get("cube_type").equals(BLACK_CUBE)) {
-                                    cube.put("blackCube", (int)cube.get("blackCube") + 1);
-                                } else if (cubeHistory.get("cube_type").equals(RED_CUBE)) {
-                                    cube.put("redCube", (int)cube.get("redCube") + 1);
-                                }
-                            } else if (!cube.get("charName").equals(cubeHistory.get("character_name")) && cube.get("item").equals(cubeHistory.get("target_item"))){
-                                System.out.println("없음");
-                                Map<String, Object> newCube = new HashMap<>();
-                                newCube.put("charName", cubeHistory.get("character_name"));
-                                newCube.put("item", cubeHistory.get("target_item"));
-                                if (cubeHistory.get("cube_type").equals(BLACK_CUBE)) {
-                                    newCube.put("blackCube", 1);
-                                    newCube.put("redCube", 0);
-                                } else if (cubeHistory.get("cube_type").equals(RED_CUBE)) {
-                                    newCube.put("blackCube", 0);
-                                    newCube.put("redCube", 1);
-                                }
-                                cubeList.add(newCube);
-                                break;
-                            } else {
-                                continue;
-                            }
-                        }
                     }
-                } else {
-                    continue;
                 }
             }
         }

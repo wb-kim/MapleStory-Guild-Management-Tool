@@ -17,4 +17,5 @@ public class Noble {
     private int warn = 0;
     private int dojangAgree = -1;
     private String grantor = "";
+    private String token = "";
 }

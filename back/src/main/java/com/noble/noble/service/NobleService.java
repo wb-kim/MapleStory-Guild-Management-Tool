@@ -47,6 +47,10 @@ public class NobleService {
         return nobleMapper.updateNoble(noble) > 0 ? true : false;
     }
 
+    public boolean insertToken(Map<String, Object> param) {
+        return nobleMapper.insertToken(param) > 0 ? true : false;
+    }
+
     public boolean useExempt(Map<String, Object> param) {
         return nobleMapper.useExempt(param) > 0 ? true : false;
     }
