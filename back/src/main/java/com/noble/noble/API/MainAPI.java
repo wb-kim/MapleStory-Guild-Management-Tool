@@ -42,7 +42,7 @@ public class MainAPI {
     }
 
     @PostMapping("/Main/cube")
-    public List<Map<String, Object>> getCubeCount(@RequestBody Map<String, Object> param) throws IOException{
+    public Object getCubeCount(@RequestBody Map<String, Object> param) throws IOException{
         int idx = nobleService.getIdx((String)param.get("nickname"));
         String token = nobleService.getNoble(idx).getToken();
         Map<String, Object> searchParam = new HashMap<>();

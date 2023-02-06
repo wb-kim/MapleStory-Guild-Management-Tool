@@ -29,7 +29,7 @@ public class OpenAPIService {
     private static final String RED_CUBE = "레드 큐브";
             
     @SuppressWarnings("unchecked")
-    public List<Map<String, Object>> getCubeCount(Map<String, Object> param) throws IOException {
+    public Object getCubeCount(Map<String, Object> param) throws IOException {
         LocalDate list = BASE_DATE;
         LocalDate today = LocalDate.now();
         //int compare = today.compareTo(BASE_DATE);
@@ -46,13 +46,12 @@ public class OpenAPIService {
             conn.setRequestProperty("authorization", (String)param.get("token"));
             conn.setConnectTimeout(1000);
             conn.setReadTimeout(1000);
-            
+
             if (conn.getResponseCode() == 401) {
-                throw new IOException("401");
+                return "401";
             }
 
             conn.getInputStream();
-
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             String sb = br.readLine();
             

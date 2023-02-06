@@ -285,6 +285,11 @@
                 type: 'POST',
                 contentType: 'application/json',
                 success: function(data){
+                    if (data == "401") {
+                        alert('인증되지 않은 사용자입니다.\nAPI 키를 등록하고 사용해주세요.');
+                        checkSearch = 0;
+                        return;
+                    }
                     $.each(data, function(i) {
                         str += '<tr>';
                         str += '<th scope="row">' + (isEmpty(data[i].charName) ? '' : data[i].charName) + '</th>';
@@ -305,18 +310,9 @@
 
                     checkSearch = 0;
                 },
-                error: function(a,b,c){
-                    console.log(a);
-                    console.log(b);
-                    console.log(c);
-                    
-                    /*if (data == "401") {
-                        alert('인증되지 않은 사용자입니다.\nAPI 키를 등록해주세요.');
-                        checkSearch = 0;
-                    } else {
-                        alert('길드원이 아니거나 기타 오류입니다.\n잠시 후에 다시 시도해주세요.');
-                        checkSearch = 0;
-                    }*/
+                error: function(){
+                    alert('길드원이 아니거나 기타 오류입니다.\n잠시 후에 다시 시도해주세요.');
+                    checkSearch = 0;
                 }
             })
         }
