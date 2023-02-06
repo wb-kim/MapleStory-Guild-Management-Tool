@@ -280,10 +280,10 @@
             $('#total_table').html(loading);
             checkSearch = 1;
             $.ajax({
-            url: 'https://reboot2-noble.kro.kr/api/Main/cube',
-            data: param,
-            type: 'POST',
-            contentType: 'application/json',
+                url: 'https://reboot2-noble.kro.kr/api/Main/cube',
+                data: param,
+                type: 'POST',
+                contentType: 'application/json',
                 success: function(data){
                     $.each(data, function(i) {
                         str += '<tr>';
@@ -305,14 +305,15 @@
 
                     checkSearch = 0;
                 },
-                fail: function(data){
-                    if (data == "401") {
+                error: function(a,b,c){
+                    console.log(a, b, c);
+                    /*if (data == "401") {
                         alert('인증되지 않은 사용자입니다.\nAPI 키를 등록해주세요.');
                         checkSearch = 0;
                     } else {
                         alert('길드원이 아니거나 기타 오류입니다.\n잠시 후에 다시 시도해주세요.');
                         checkSearch = 0;
-                    }
+                    }*/
                 }
             })
         }
