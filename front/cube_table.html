@@ -218,7 +218,7 @@
         param.item = $('#item').val();
         param.page = 1;
         param = JSON.stringify(param);
-        if (param.nickname == null || param.item == null) {
+        if ($('#item').val() == null || $('#item').val() == null) {
             alert('본캐와 아이템 명 두 개 다 입력해주세요.');
         } else {
             var loading = '<td scope="col" colspan="4">데이터 로딩 중</td>'
