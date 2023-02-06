@@ -31,6 +31,60 @@
         background: #333;
         color: #fff;
     }
+    button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        
+        background: var(--button-bg-color);
+        color: var(--button-color);
+        
+        margin: 0;
+        padding: 3px 6px;
+        
+        font-family: '나눔 고딕';
+        font-weight: 400;
+        text-align: center;
+        text-decoration: none;
+        
+        border: none;
+        border-radius: 4px;
+        
+        display: inline-block;
+        width: auto;
+        
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        
+        cursor: pointer;
+        
+        transition: 0.5s;
+    }
+
+    button.success {
+        --button-bg-color: #28a745;
+        --button-hover-bg-color: #218838;
+    }
+
+    button.error {
+        --button-bg-color: #dc3545;
+        --button-hover-bg-color: #c82333;
+    }
+
+    button.warning {
+        --button-color: #212529;
+        --button-bg-color: #ffc107;
+        --button-hover-bg-color: #e0a800;
+    }
+
+    button:active,
+    button:hover,
+    button:focus {
+        background: var(--button-hover-bg-color);
+        outline: 0;
+    }
+    button:disabled {
+        opacity: 0.5;
+    }
 </style>
 
 <body>
@@ -53,7 +107,7 @@
                             <table style="margin-bottom: 1vw; float: left;">
                                 <tbody>
                                 <tr>
-                                    <td style="width: 300px;">
+                                    <td style="width: 200px;">
                                         <input id="nickname" class="form-control" placeholder="본캐 닉네임을 입력하세요."/>
                                     </td>
                                     <td style="width: 300px;">
@@ -211,6 +265,7 @@
     
     function searchData() {
         if (checkSearch == 1) {
+            alert('이미 데이터 조회중입니다.');
             return;
         }
         var param = {};
