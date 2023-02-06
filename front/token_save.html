@@ -142,7 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button class="success" style="float: right;" onClick="insertToken()">API 키 입력</button>
+                                    <div><button class="success" style="float: right;" onClick="insertToken()">API 키 입력</button></div>
                                 </div>
                             </form>
                         </div>
@@ -182,7 +182,6 @@
         $('#aside').load('common/aside.html');
         $('#footer').load('common/footer.html');
         sessionCheck();
-        getAdminList();
         checkEdit(checkIdx);
     });
 
