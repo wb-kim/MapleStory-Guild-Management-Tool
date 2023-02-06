@@ -48,6 +48,7 @@
                 <if test="dojangAgree != -1">dojang_agree = #{dojangAgree},</if>
                 <if test="dotax != 0">dotax = #{dotax},</if>
                 <if test="grantor != ''">grantor = #{grantor},</if>
+                <if test="token != ''">token = #{token},</if>
             </set>
         WHERE idx = #{idx}
     </update>

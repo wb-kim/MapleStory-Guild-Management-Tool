@@ -34,9 +34,9 @@ public class MainAPI {
     @Autowired private OpenAPIService openAPIService;
 
     @PostMapping("/Main/setToken")
-    public String insertToken(@RequestBody Map<String, Object> param) {
+    public String insertToken(@RequestBody Noble param) {
         String response = "ERROR";
-        if (nobleService.insertToken(param))
+        if (nobleService.updateNoble(param))
             response = "SUCCESS";
         return response;
     }
