@@ -2,13 +2,8 @@ package com.noble.noble.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -52,6 +47,10 @@ public class OpenAPIService {
             conn.setConnectTimeout(1000);
             conn.setReadTimeout(1000);
             
+            if (conn.getResponseCode() == 401) {
+                throw new IOException("401");
+            }
+
             conn.getInputStream();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
