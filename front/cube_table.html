@@ -210,19 +210,21 @@
     }
     
     function searchData() {
+        if (checkSearch == 1) {
+            return;
+        }
         var param = {};
         param.nickname = $('#nickname').val();
         param.item = $('#item').val();
         param.page = 1;
         param = JSON.stringify(param);
-        if (param.nickname == null && param.item == null) {
+        if (param.nickname == null || param.item == null) {
             alert('본캐와 아이템 명 두 개 다 입력해주세요.');
         } else {
             var loading = '<td scope="col" colspan="4">데이터 로딩 중</td>'
             $('#total_table').html(loading);
             checkSearch = 1;
-        }
-        $.ajax({
+            $.ajax({
             url: 'https://reboot2-noble.kro.kr/api/Main/cube',
             data: param,
             type: 'POST',
@@ -234,8 +236,8 @@
                     str += '<tr>';
                     str += '<th scope="row">' + (isEmpty(data[i].charName) ? '' : data[i].charName) + '</th>';
                     str += '<td>' + (isEmpty(data[i].item) ? '' : data[i].item) + '</td>';
-                    str += '<td>' + (isEmpty(data[i].blackCube) ? '' : data[i].blackCube)+ '</td>';
-                    str += '<td>' + (isEmpty(data[i].redCube) ? '' : data[i].redCube)+ '</td>';
+                    str += '<td>' + (isEmpty(data[i].blackCube) ? 0 : data[i].blackCube)+ '</td>';
+                    str += '<td>' + (isEmpty(data[i].redCube) ? 0 : data[i].redCube)+ '</td>';
                     str += '</tr>'
                 });
 
@@ -247,8 +249,11 @@
                     $('#total_table').html(str);
                     pagination();
                 }
+
+                checkSearch = 0;
             },
         })
+        }
     }
 </script>
 
