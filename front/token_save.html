@@ -142,8 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-12" id="buttonMessage" style="padding-right: 30px;">
-                                    </div>
+                                    <button class="success" style="float: right;" onClick="insertNoble()" id="buttonMessage">가입</button>
                                 </div>
                             </form>
                         </div>
@@ -242,7 +241,7 @@
         });
     }
 
-    function insertNoble() {
+    function insertToken() {
         if (checkMainIdx == 0) {
             alert('본캐 확인이 진행되지 않았습니다.\n확인 후 다시 진행해주세요.');
             return;
