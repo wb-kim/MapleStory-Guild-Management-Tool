@@ -39,7 +39,7 @@ public class OpenAPIService {
         LocalDate today = LocalDate.now();
         //int compare = today.compareTo(BASE_DATE);
         int compare = (int)ChronoUnit.DAYS.between(BASE_DATE, today);
-        System.out.println(compare);
+        //System.out.println(compare);
         
         String itemName = (String) param.get("item");
         List<Map<String, Object>> cubeList = new ArrayList<>();
