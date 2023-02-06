@@ -596,7 +596,7 @@ public class AdminAPI {
             List<String> dotaxUpperList = dotaxService.getDotaxUpperListFromMain(noble.getIdx());
             temp.put("dotaxUpper", dotaxUpperList);
             temp.put("exemptedDate", noble.getExemptedDate());
-            if ((centuryList.size() < 3 && centuryUpperList.size() > 0) || (dotaxList.size() < 1 && dotaxUpperList.size() > 0)) {
+            if ((centuryList.size() < 2 && centuryUpperList.size() > 0) || (dotaxList.size() < 1 && dotaxUpperList.size() > 0)) {
                 response.add(temp);
             }
         }
