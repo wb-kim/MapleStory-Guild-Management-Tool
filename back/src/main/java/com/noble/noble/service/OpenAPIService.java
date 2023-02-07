@@ -74,7 +74,7 @@ public class OpenAPIService {
 
             for (Map<String, Object> cubeHistory : cubeHistories) {
                 System.out.println(cubeHistory.get("target_item"));
-                if (cubeHistory.get("target_item").equals(itemName)) {
+                if (((String) cubeHistory.get("target_item")).contains(itemName)) {
                     Optional<Map<String, Object>> result = cubeList.stream().filter(x -> x.get("charName").equals(cubeHistory.get("character_name")))
                                                                             .filter(x -> x.get("item").equals(cubeHistory.get("target_item"))).findFirst();
                     System.out.println(result);
