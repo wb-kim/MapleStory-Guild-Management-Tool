@@ -129,6 +129,7 @@
                                             <th scope="col">아이템이름</th>
                                             <th scope="col">블랙 큐브</th>
                                             <th scope="col">레드 큐브</th>
+                                            <th scope="col">총 메소</th>
                                         </tr>
                                     </thead>
                                     <tbody id="total_table">
@@ -294,11 +295,16 @@
                         return;
                     }
                     $.each(data, function(i) {
+                        var blackCube = isEmpty(data[i].blackCube) ? 0 : data[i].blackCube;
+                        var redCube = isEmpty(data[i].redCube) ? 0 : data[i].redCube;
+                        var meso = blackCube * 22600000 + redCube * 12500000;
+
                         str += '<tr>';
                         str += '<th scope="row">' + (isEmpty(data[i].charName) ? '' : data[i].charName) + '</th>';
                         str += '<td>' + (isEmpty(data[i].item) ? '' : data[i].item) + '</td>';
-                        str += '<td>' + (isEmpty(data[i].blackCube) ? 0 : data[i].blackCube)+ '</td>';
-                        str += '<td>' + (isEmpty(data[i].redCube) ? 0 : data[i].redCube)+ '</td>';
+                        str += '<td>' + blackCube + '</td>';
+                        str += '<td>' + redCube + '</td>';
+                        str += '<td>' + meso.toLocaleString("ko-KR") + '</td>';
                         str += '</tr>'
                     });
 
