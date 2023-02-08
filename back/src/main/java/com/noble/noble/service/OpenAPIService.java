@@ -81,10 +81,10 @@ public class OpenAPIService {
                         Map<String, Object> cube = (Map<String, Object>) result.get();
                         if (cubeHistory.get("cube_type").equals(BLACK_CUBE)) {
                             cube.put("blackCube", (int)cube.get("blackCube") + 1);
-                            cube.put("price", (int)cube.get("price") + getPrice((int)cubeHistory.get("item_level")));
+                            cube.put("price", (long)cube.get("price") + getPrice((int)cubeHistory.get("item_level")));
                         } else if (cubeHistory.get("cube_type").equals(RED_CUBE)) {
                             cube.put("redCube", (int)cube.get("redCube") + 1);
-                            cube.put("price", (int)cube.get("price") + getPrice((int)cubeHistory.get("item_level")));
+                            cube.put("price", (long)cube.get("price") + getPrice((int)cubeHistory.get("item_level")));
                         }
                     } else {
                         Map<String, Object> newCube = new HashMap<>();
