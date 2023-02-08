@@ -73,33 +73,35 @@ public class OpenAPIService {
             }
 
             for (Map<String, Object> cubeHistory : cubeHistories) {
-                System.out.println(cubeHistory.get("target_item"));
                 if (((String) cubeHistory.get("target_item")).contains(itemName)) {
                     Optional<Map<String, Object>> result = cubeList.stream().filter(x -> x.get("charName").equals(cubeHistory.get("character_name")))
                                                                             .filter(x -> x.get("item").equals(cubeHistory.get("target_item"))).findFirst();
                     System.out.println(result);
                     if (result.isPresent()) {
-                        System.out.println("있음");    
                         Map<String, Object> cube = (Map<String, Object>) result.get();
                         if (cubeHistory.get("cube_type").equals(BLACK_CUBE)) {
                             cube.put("blackCube", (int)cube.get("blackCube") + 1);
+                            cube.put("price", (int)cube.get("price") + getPrice((int)cubeHistory.get("item_level")));
                         } else if (cubeHistory.get("cube_type").equals(RED_CUBE)) {
                             cube.put("redCube", (int)cube.get("redCube") + 1);
+                            cube.put("price", (int)cube.get("price") + getPrice((int)cubeHistory.get("item_level")));
                         }
                     } else {
-                        System.out.println("없음");    
                         Map<String, Object> newCube = new HashMap<>();
                         newCube.put("charName", cubeHistory.get("character_name"));
                         newCube.put("item", cubeHistory.get("target_item"));
                         if (cubeHistory.get("cube_type").equals(BLACK_CUBE)) {
                             newCube.put("blackCube", 1);
                             newCube.put("redCube", 0);
+                            newCube.put("price", getPrice((int)cubeHistory.get("item_level")));
                         } else if (cubeHistory.get("cube_type").equals(RED_CUBE)) {
                             newCube.put("blackCube", 0);
                             newCube.put("redCube", 1);
+                            newCube.put("price", getPrice((int)cubeHistory.get("item_level")));
                         } else {
                             newCube.put("blackCube", 0);
                             newCube.put("redCube", 0);  
+                            newCube.put("price", getPrice((int)cubeHistory.get("item_level")));
                         }
                         cubeList.add(newCube);
                     }
@@ -130,5 +132,17 @@ public class OpenAPIService {
         Map<String, Object> totalMap = objectMapper.readValue(sb, Map.class);
 
         return totalMap;
+    }
+
+    private int getPrice(int level) {
+        if (level <= 70) {
+            return (int) (0.5 * level * level);
+        } else if (level > 70 && level <= 120) {
+            return (int) (2.5 * level * level);
+        } else if (level > 120) {
+            return 20 * level * level;
+        } else {
+            return 0;
+        }
     }
 }
