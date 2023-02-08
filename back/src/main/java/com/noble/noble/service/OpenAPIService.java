@@ -134,11 +134,11 @@ public class OpenAPIService {
         return totalMap;
     }
 
-    private int getPrice(int level) {
+    private long getPrice(int level) {
         if (level <= 70) {
-            return (int) (0.5 * level * level);
+            return (long) (0.5 * level * level);
         } else if (level > 70 && level <= 120) {
-            return (int) (2.5 * level * level);
+            return (long) (2.5 * level * level);
         } else if (level > 120) {
             return 20 * level * level;
         } else {
