@@ -27,4 +27,7 @@ public interface NobleMapper {
     public int getNobleCount();
     public int getIdx(String nickname);
     public int checkDuplicate(String nickname);
+    public int deleteNobleSubChar();
+    public int deleteCenturySubChar();
+    public int deleteDotaxSubChar();
 }

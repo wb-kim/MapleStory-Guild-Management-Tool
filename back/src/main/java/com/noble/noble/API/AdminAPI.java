@@ -242,6 +242,7 @@ public class AdminAPI {
 
             log.setWhat("노블 길드 탈퇴");
             if (logService.insertLog(log) && nobleService.deleteNoble(idx)) {
+                
                 response = "SUCCESS";
             }
         }

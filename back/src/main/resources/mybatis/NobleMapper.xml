@@ -93,5 +93,13 @@
         SELECT COUNT(*) FROM noble WHERE nickname = #{nickname}
     </select>
 
-    
+    <delete id="deleteCenturySubChar" parameterType="int" resultType="int">
+        DELETE c FROM century c LEFT OUTER JOIN noble n ON c.main_char = n.idx WHERE n.idx IS NULL
+    </delete>
+    <delete id="deleteNobleSubChar" parameterType="int" resultType="int">
+        DELETE c FROM noble c LEFT OUTER JOIN noble n ON c.main_char = n.idx WHERE n.idx IS NULL
+    </delete>
+    <delete id="deleteDotaxSubChar" parameterType="int" resultType="int">
+        DELETE c FROM dotax c LEFT OUTER JOIN noble n ON c.main_char = n.idx WHERE n.idx IS NULL
+    </delete>
 </mapper>
