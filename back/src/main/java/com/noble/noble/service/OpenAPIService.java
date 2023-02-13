@@ -101,7 +101,7 @@ public class OpenAPIService {
                         } else {
                             newCube.put("blackCube", 0);
                             newCube.put("redCube", 0);  
-                            newCube.put("price", 0);
+                            newCube.put("price", (long)0);
                         }
                         cubeList.add(newCube);
                     }
