@@ -51,6 +51,7 @@ public class AdminAPI {
         form.setCommunity((String)param.get("community"));
         form.setDojang((String)param.get("dojang"));
 
+        System.out.println(form);
         if (formService.insertForm(form)) {
             response = "SUCCESS";
         }
