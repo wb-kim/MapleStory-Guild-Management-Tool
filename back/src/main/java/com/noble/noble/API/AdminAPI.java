@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.noble.noble.data.Century;
 import com.noble.noble.data.Dotax;
+import com.noble.noble.data.Form;
 import com.noble.noble.data.Log;
 import com.noble.noble.data.Noble;
 import com.noble.noble.service.CenturyService;
 import com.noble.noble.service.DotaxService;
+import com.noble.noble.service.FormService;
 import com.noble.noble.service.GuildCrawlingService;
 import com.noble.noble.service.LogService;
 import com.noble.noble.service.NobleService;
@@ -33,13 +35,48 @@ public class AdminAPI {
     @Autowired private CenturyService centuryService;
     @Autowired private DotaxService dotaxService;
     @Autowired private LogService logService;
+    @Autowired private FormService formService;
     @Autowired private GuildCrawlingService crawlingService;
 
     @PostMapping("/Admin/insertForm")
     public String insertForm(@RequestBody Map<String, Object> param) {
-        System.out.println(param);
-        return param.toString();
+        String response = "ERROR";
+        Form form = new Form();
+        form.setNickname((String)param.get("nickname"));
+        form.setReason((String)param.get("reason"));
+        form.setAge((String)param.get("age"));
+        form.setFlag((String)param.get("flag"));
+        form.setLatestGuild((String)param.get("latestGuild"));
+        form.setManner((String)param.get("manner"));
+        form.setCommunity((String)param.get("community"));
+        form.setDojang((String)param.get("dojang"));
+
+        if (formService.insertForm(form)) {
+            response = "SUCCESS";
+        }
+
+        return response;
     }
+
+    @PostMapping("/Admin/joinToForm")
+    public String joinToForm(@RequestBody Map<String, Object> param) throws IOException, InterruptedException {
+        String response = "ERROR";
+        int formIdx = param.get("formIdx") != null ? (int)param.get("formIdx") : 0;
+        String grantor = param.get("grantor") != null ? (String)param.get("grantor") : "히비낏";
+        Noble noble = new Noble();
+        Form form = formService.getForm(formIdx);
+
+        noble.setNickname((String)param.get("nickname"));
+        noble.setDojangAgree((form.getDojang() == "예") ? 1 : 0);
+        noble.setGrantor(grantor);
+
+        if(insertNoble(noble) == "SUCCESS" && formService.join(formIdx)) {
+            response = "SUCCESS";
+        }
+
+        return response;
+    }
+
     @PostMapping("/Admin/getAdmin")
     public List<String> getAdmin() {
         return nobleService.getAdmin();

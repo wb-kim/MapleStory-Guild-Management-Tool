@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noble.noble.mapper.FormMapper">
+    <insert id="insertForm" parameterType="Form">
+        INSERT INTO form (nickname, reason, age, flag, latest_guild, manner, community, dojang)
+        VALUES (#{nickname}, #{reason}, #{age}, #{flag}, #{latestGuild}, #{manner}, #{community}, #{dojang})
+    </insert>
+
+    <select id="getFormNotChecked" resultType="Form">
+        SELECT * FROM form WHERE join_check = 0
+    </select>
+
+    <select id="getFormChecked" resultType="Form">
+        SELECT * FROM form WHERE join_check = 1
+    </select>
+
+    <select id="getForm" parameterType="int" resultType="Form">
+        SELECT * FROM form WHERE idx = #{idx}
+    </select>
+
+    <update id="join" parameterType="int">
+        UPDATE form SET join_check = 1 where idx = #{idx}
+    </update>
+</mapper>
