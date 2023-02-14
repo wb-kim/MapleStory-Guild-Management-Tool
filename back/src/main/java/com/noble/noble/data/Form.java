@@ -13,5 +13,5 @@ public class Form {
     private String manner = "";
     private String community = "";
     private String dojang = "";
-    private int joinCheck = -1;
+    private int joinCheck = 0;
 }
