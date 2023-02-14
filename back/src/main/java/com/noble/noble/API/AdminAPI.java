@@ -35,6 +35,10 @@ public class AdminAPI {
     @Autowired private LogService logService;
     @Autowired private GuildCrawlingService crawlingService;
 
+    @PostMapping("/Admin/insertForm")
+    public String insertForm(@RequestBody Map<String, Object> param) {
+        return param.toString();
+    }
     @PostMapping("/Admin/getAdmin")
     public List<String> getAdmin() {
         return nobleService.getAdmin();
