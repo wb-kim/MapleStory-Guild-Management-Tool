@@ -37,6 +37,7 @@ public class AdminAPI {
 
     @PostMapping("/Admin/insertForm")
     public String insertForm(@RequestBody Map<String, Object> param) {
+        System.out.println(param);
         return param.toString();
     }
     @PostMapping("/Admin/getAdmin")
