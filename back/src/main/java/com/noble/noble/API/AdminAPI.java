@@ -94,6 +94,19 @@ public class AdminAPI {
         }
     }
 
+    @PostMapping("/Admin/getFormList")
+    public Map<String, Object> getFormList() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("checked", formService.getFormChecked());
+        response.put("unchecked", formService.getFormNotChecked());
+        return response;
+    }
+
+    @PostMapping("/Admin/getForm")
+    public Form getForm(@RequestBody Map<String, Object> param) {
+        return formService.getForm((int)param.get("idx"));
+    }
+
     @PostMapping("/Admin/getLogList")
     public List<Log> getLogList(@RequestBody Map<String, Object> param) {
         Map<String, Object> searchParam = new HashMap<>();
