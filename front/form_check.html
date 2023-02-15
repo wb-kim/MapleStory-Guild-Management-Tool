@@ -312,7 +312,7 @@
             success: function(data){
                 var str = '';
                 var total = 0;
-                console.log(data.unchecked);
+                console.log(data.unchecked[0]);
                 if (data.unchecked.length >= data.checked.length) {
                     total = data.unchecked.length;
                 } else {
