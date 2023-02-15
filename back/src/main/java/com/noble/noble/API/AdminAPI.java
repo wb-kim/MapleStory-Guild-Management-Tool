@@ -62,20 +62,29 @@ public class AdminAPI {
     @PostMapping("/Admin/joinToForm")
     public String joinToForm(@RequestBody Map<String, Object> param) throws IOException, InterruptedException {
         String response = "ERROR";
-        int formIdx = param.get("formIdx") != null ? (int)param.get("formIdx") : 0;
+        int formIdx = param.get("idx") != null ? (int)param.get("idx") : 0;
         String grantor = param.get("grantor") != null ? (String)param.get("grantor") : "히비낏";
         Noble noble = new Noble();
         Form form = formService.getForm(formIdx);
 
-        noble.setNickname((String)param.get("nickname"));
+        noble.setNickname(form.getNickname());
         noble.setDojangAgree((form.getDojang() == "예") ? 1 : 0);
         noble.setGrantor(grantor);
 
-        if(insertNoble(noble) == "SUCCESS" && formService.join(formIdx)) {
+        String insertNoble = insertNoble(noble);
+        if (insertNoble == "SUCCESS" && formService.join(formIdx)) {
             response = "SUCCESS";
+        } else if (insertNoble == "MGERROR") {
+            response = "MGERROR";
+            return response;
         }
 
         return response;
+    }
+
+    @PostMapping("/Admin/reject")
+    public String reject(@RequestBody Map<String, Object> param) {
+        return formService.join((int)param.get("idx")) ? "SUCCESS" : "ERROR";
     }
 
     @PostMapping("/Admin/getAdmin")

@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Form {
     private int idx = -1;
+    private String createDt = "";
     private String nickname = "";
     private String reason = "";
     private String age = "";
