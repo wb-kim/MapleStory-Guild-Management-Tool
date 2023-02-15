@@ -312,6 +312,7 @@
             success: function(data){
                 var str = '';
                 var total = 0;
+                console.log(data);
                 $.each(data, function(i) {
                     str += '<tr id="userRow">';
                     str += '<th scope="row"><a href="join_form.html?idx=' + data.unchecked[i].idx + '">' + isEmpty(data.unchecked[i]) ? "" : data.unchecked[i].nickname + '</a></th>';
