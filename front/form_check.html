@@ -321,8 +321,8 @@
 
                 for (var i = 0; i < total; i++) {
                     str += '<tr id="userRow">';
-                    str += '<th scope="row">' + isEmpty(data.unchecked[i]) ? "" : '<a href="join_form.html?idx=' + data.unchecked[i].idx + '">' + data.unchecked[i].nickname + '</a></th>';
-                    str += '<td>' + isEmpty(data.checked[i]) ? "" : '<a href="join_form.html?idx=' + data.checked[i].idx + '">' + data.checked[i].nickname + '</a></td>';
+                    str += '<th scope="row">' + (isEmpty(data.unchecked[i]) ? "" : ('<a href="join_form.html?idx=' + data.unchecked[i].idx + '">' + data.unchecked[i].nickname + '</a>')) +'</th>';
+                    str += '<td>' + (isEmpty(data.checked[i]) ? "" : ('<a href="join_form.html?idx=' + data.checked[i].idx + '">' + data.checked[i].nickname + '</a>'))'</td>';
                     str += '</tr>'
                 }
 
