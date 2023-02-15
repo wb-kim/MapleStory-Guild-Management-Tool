@@ -312,14 +312,20 @@
             success: function(data){
                 var str = '';
                 var total = 0;
-                console.log(data);
-                $.each(data, function(i) {
+                console.log(data.unchecked);
+                if (data.unchecked.length >= data.checked.length) {
+                    total = data.unchecked.length;
+                } else {
+                    total = data.checked.length;
+                }
+
+                for (var i = 0; i < total; i++) {
                     str += '<tr id="userRow">';
                     str += '<th scope="row"><a href="join_form.html?idx=' + data.unchecked[i].idx + '">' + isEmpty(data.unchecked[i]) ? "" : data.unchecked[i].nickname + '</a></th>';
                     str += '<td><a href="join_form.html?idx=' + data.checked[i].idx + '">' + isEmpty(data.checked[i]) ? "" : data.checked[i].nickname + '</a></td>';
                     str += '</tr>'
-                });
-                
+                }
+
                 if (str == '') {
                     str = '<td scope="col" colspan="2">조회할 수 있는 데이터가 없습니다.</td>'
                     $('#total_table').html(str);
