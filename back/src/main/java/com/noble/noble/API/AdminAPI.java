@@ -68,7 +68,7 @@ public class AdminAPI {
         Form form = formService.getForm(formIdx);
 
         noble.setNickname(form.getNickname());
-        noble.setDojangAgree((form.getDojang() == "예") ? 1 : 0);
+        noble.setDojangAgree((form.getDojang().equals("예")) ? 1 : 0);
         noble.setGrantor(grantor);
 
         String insertNoble = insertNoble(noble);
