@@ -286,23 +286,6 @@
 
     }
 
-    function updateDojang() {
-        $.ajax({
-            url: 'https://reboot2-noble.kro.kr/api/Admin/updateAllDojang', 
-            type: 'POST',
-            success: function(data){
-                
-                if (data == "SUCCESS") {
-                    alert('갱신이 완료되었습니다.')
-                    createTable();
-                } else {
-                    alert('갱신이 실패하였습니다.\n개발자에게 문의 주세요.');
-                    createTable();
-                }
-            }
-        });
-    }
-
     function createTable() {
 
         $.ajax({
