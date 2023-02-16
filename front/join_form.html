@@ -231,7 +231,7 @@
     }
     
     var checkMainIdx = 0;
-    var checkIdx = isEmpty(location.href.split('?')) ? '' : location.href.split('?')[1];
+    var checkIdx = parseInt((isEmpty(location.href.split('?')) ? '' : location.href.split('?')[1]).split('=')[1]);
     console.log(location.href);
     console.log(checkIdx);
     var idx = 0;
