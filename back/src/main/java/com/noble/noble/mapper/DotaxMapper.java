@@ -18,6 +18,7 @@ public interface DotaxMapper {
     public int deleteDotax(int idx);
     public Dotax getDotax(int idx);
     public int deleteDotaxFromMain(int mainChar);
+    public int deleteDotaxByNickname(String nickname);
     public List<String> getDotaxNickname();
     public int getDotaxCount();
     public List<Dotax> getDotaxer();

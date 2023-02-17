@@ -49,6 +49,10 @@
         DELETE FROM dotax WHERE main_char = #{mainChar}
     </delete>
 
+    <delete id="deleteDotaxByNickname" parameterType="String">
+        DELETE FROM dotax WHERE nickname = #{nickname}
+    </delete>
+
     <select id="getDotaxNickname" resultType="String">
         SELECT nickname FROM dotax
     </select>

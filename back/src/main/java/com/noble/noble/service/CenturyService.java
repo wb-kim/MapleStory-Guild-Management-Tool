@@ -51,6 +51,10 @@ public class CenturyService {
         return centuryMapper.deleteCenturyFromMain(mainChar) > 0 ? true : false;        
     }
 
+    public boolean deleteCenturyByNickname(String nickname) {
+        return centuryMapper.deleteCenturyByNickname(nickname) > 0 ? true : false;        
+    }
+
     public List<String> getCenturyNickname() {
         return centuryMapper.getCenturyNickname();
     }

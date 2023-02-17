@@ -16,6 +16,7 @@ public interface CenturyMapper {
     public List<Century> getCenturyList(Map<String, Object> param);
     public int updateCentury(Century century);
     public int deleteCentury(int idx);
+    public int deleteCenturyByNickname(String nickname);
     public Century getCentury(int idx);
     public int deleteCenturyFromMain(int mainChar);
     public List<String> getCenturyNickname();

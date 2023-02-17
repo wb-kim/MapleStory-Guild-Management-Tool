@@ -65,6 +65,11 @@
         DELETE FROM noble WHERE idx = #{idx}
     </delete>
 
+    <delete id="deleteNobleByNickname" parameterType="String">
+        DELETE FROM noble WHERE nickname = #{nickname}
+    </delete>
+
+
     <delete id="deleteNobleFromMain" parameterType="int">
         DELETE FROM noble WHERE main_char = #{mainChar}
     </delete>

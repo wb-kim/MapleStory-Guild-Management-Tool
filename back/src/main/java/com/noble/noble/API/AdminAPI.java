@@ -618,13 +618,18 @@ public class AdminAPI {
             }
         }
 
-        response.put("nobleSheet", nobleList);
-        response.put("centurySheet", centuryList);
-        response.put("dotaxSheet", dotaxList);
+        for (String noble : nobleList) {
+            nobleService.deleteNobleByNickname(noble);
+        }
+        for (String century : centuryList) {
+            centuryService.deleteCenturyByNickname(century);
+        }
+        for (String dotax : dotaxList) {
+            dotaxService.deleteDotaxByNickname(dotax);
+        }
         response.put("nobleGame", nobleRealList);
         response.put("centuryGame", centuryRealList);
         response.put("dotaxGame", dotaxRealList);
-        response.put("dotaxer", dotaxerStringList);
         
         return response;
     }

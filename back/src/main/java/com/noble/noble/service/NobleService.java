@@ -86,6 +86,10 @@ public class NobleService {
     public boolean checkDuplicate(String nickname) {
         return (nobleMapper.checkDuplicate(nickname) > 0) ? true : false;
     }
+
+    public boolean deleteNobleByNickname(String nickname) {
+        return nobleMapper.deleteNobleByNickname(nickname) > 0 ? true : false;        
+    }
     
     public void deleteSubChar() {
         nobleMapper.deleteCenturySubChar();

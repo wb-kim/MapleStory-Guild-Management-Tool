@@ -21,6 +21,7 @@ public interface NobleMapper {
     public int deleteNoble(int idx);
     public Noble getNoble(int idx);
     public int deleteNobleFromMain(int mainChar);
+    public int deleteNobleByNickname(String nickname);
     public List<Noble> getNobleForDojang();
     public List<String> getNobleNickname();
     public List<String> getAdmin();

@@ -49,6 +49,10 @@
         DELETE FROM century WHERE main_char = #{mainChar}
     </delete>
 
+    <delete id="deleteCenturyByNickname" parameterType="String">
+        DELETE FROM century WHERE nickname = #{nickname}
+    </delete>
+
     <select id="getCenturyNickname" resultType="String">
         SELECT nickname FROM century
     </select>
