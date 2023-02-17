@@ -124,18 +124,14 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title" style="margin-bottom: 1vw; font-weight: bold;">인원 관리 필요 목록</h4>
+                            <h4 class="card-title" style="margin-bottom: 1vw; font-weight: bold;">시트 미기입 명단</h4>
                             <div class="table-responsive" style="display: inline-block;">
                                 <table id="products" class="table table-bordered" style="display: none;">
                                     <thead class="table-light">
                                         <tr>
-                                            <th scope="col">노블 DB</th>
-                                            <th scope="col">노블 게임</th>
-                                            <th scope="col">20세기 DB</th>
-                                            <th scope="col">20세기 게임</th>
-                                            <th scope="col">도탁스 DB</th>
-                                            <th scope="col">도탁스 게임</th>
-                                            <th scope="col">도탁서 명단</th>
+                                            <th scope="col">노블</th>
+                                            <th scope="col">20세기</th>
+                                            <th scope="col">도탁스</th>
                                         </tr>
                                     </thead>
                                     <tbody id="total_table">
@@ -222,23 +218,10 @@
             type: 'POST',
             contentType: 'application/json',
             success: function(data){
-                var nobleList = '';
                 var nobleRealList = '';
-                var centuryList = '';
                 var centuryRealList = '';
-                var dotaxList = '';
                 var dotaxRealList = '';
-                var dotaxer = '';
                 var str = ''
-                $.each(data.nobleSheet, function(i) {
-                    nobleList += data.nobleSheet[i] + '<br>';
-                });
-                $.each(data.centurySheet, function(i) {
-                    centuryList += data.centurySheet[i] + '<br>';
-                });
-                $.each(data.dotaxSheet, function(i) {
-                    dotaxList += data.dotaxSheet[i] + '<br>';
-                });
                 $.each(data.nobleGame, function(i) {
                     nobleRealList += data.nobleGame[i] + '<br>';
                 });
@@ -248,25 +231,18 @@
                 $.each(data.dotaxGame, function(i) {
                     dotaxRealList += data.dotaxGame[i] + '<br>';
                 });
-                $.each(data.dotaxer, function(i) {
-                    dotaxer += data.dotaxer[i] + '<br>';
-                });
                 
 
                 console.log(nobleList);
 
                 str += '<tr id="userRow">';
-                str += '<th scope="row">' + nobleList + '</th>';
-                str += '<td>' + nobleRealList + '</td>';
-                str += '<td>' + centuryList + '</td>';
+                str += '<th scope="row">' + nobleRealList + '</th>';
                 str += '<td>' + centuryRealList + '</td>';
-                str += '<td>' + dotaxList + '</td>';
                 str += '<td>' + dotaxRealList+ '</td>';
-                str += '<td>' + dotaxer+ '</td>';
                 str += '</tr>'
 
                 if (str == '') {
-                    str = '<td scope="col" colspan="6">조회할 수 있는 데이터가 없습니다.</td>'
+                    str = '<td scope="col" colspan="3">조회할 수 있는 데이터가 없습니다.</td>'
                     $('#total_table').html(str);
                     $('#nav').remove();
                 } else {

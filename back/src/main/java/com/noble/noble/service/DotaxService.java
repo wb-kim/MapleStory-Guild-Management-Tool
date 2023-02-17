@@ -51,7 +51,7 @@ public class DotaxService {
         return dotaxMapper.deleteDotaxFromMain(mainChar) > 0 ? true : false;        
     }
 
-    public boolean deleteCenturyByNickname(String nickname) {
+    public boolean deleteDotaxByNickname(String nickname) {
         return dotaxMapper.deleteDotaxByNickname(nickname) > 0 ? true : false;        
     }
 
